@@ -123,18 +123,6 @@ if (getPagination <= 1) {
   nextInput.classList.add("disabled");
 }
 
-//Show checked radio
-showContentChecked = () => {
-  if (contentChecked) {
-    contentChecked.forEach(function (contentChecked) {
-      var radios = document.querySelectorAll(`input[value="${contentChecked.value}"]`);
-      radios.forEach(function (radio) {
-        radio.checked = true;
-      })
-    });
-  }
-}
-
 //total test results
 totalResult = () => {
   let scoreCount = 0;
@@ -174,6 +162,56 @@ showTotalResult = () => {
       'Sorry , you have been disqualified . Wish you luck next time',
       'error'
     )
+  }
+}
+
+//Show checked radio
+showContentChecked = () => {
+  if (contentChecked) {
+    contentChecked.forEach(function (contentChecked) {
+      var radios = document.querySelectorAll(`input[value="${contentChecked.value}"]`);
+      radios.forEach(function (radio) {
+        radio.checked = true;
+      })
+    });
+  }
+}
+
+//Check answer & empty
+checkAnswer = () => {
+  document.addEventListener('DOMContentLoaded', function () {
+    var questionNumber = document.querySelectorAll(".question-number");
+    if (contentChecked) {
+      contentQuestion.forEach((question, index) => {
+        contentChecked.forEach((checked, indexChecked) => {
+          if (countTimerEnd) {
+            if (checked.question == question.id) {
+              if (checked.selected == question.correct) {
+                questionNumber[indexChecked].classList.add("green-tick");
+              } else {
+                questionNumber[indexChecked].classList.add("failed");
+              }
+            }
+          }
+        });
+      });
+    }
+  });
+}
+checkAnswer();
+
+if (countTimerEnd) {
+  if (contentChecked) {
+    if (contentChecked.length != contentQuestion.length) {
+      contentQuestion.forEach(function (contentCk) {
+        contentChecked.push({
+          id: contentChecked.length + 1,
+          value: '',
+          selected: '',
+          question: contentChecked.length + 1,
+        });
+      });
+    }
   }
 }
 
@@ -244,15 +282,15 @@ showQuestionBody = () => {
       HandleQuestionHead(content.id);
       return `
           <div class="question-number">
-            <button class="btn btn-question active ">${content.id}</button>
-            <span>✓</span>
+            <button class="btn btn-question active">${content.id}</button>
+            <span></span>
           </div>
         `;
     } else {
       return `
           <div class="question-number">
             <button class="btn btn-question">${content.id}</button>
-            <span>✓</span>
+            <span></span>
           </div>
         `;
     }
@@ -344,6 +382,7 @@ btnSubmit.addEventListener("click", () => {
     btnSubmit.parentElement.classList.add("hidden");
     btnStart.parentElement.classList.remove("hidden");
     countElement.remove();
+    setTimeout("location.reload()", 2000);
   }
 });
 
@@ -408,6 +447,7 @@ btnNext.addEventListener("click", () => {
   localStorage.setItem("getPagination", getPagination++);
 });
 
+//Event click get checked
 handleEventChecked = (e, newIndex, question) => {
   if (getTimer) {
     if (contentChecked) {
