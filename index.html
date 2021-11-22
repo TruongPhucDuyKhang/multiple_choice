@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <!-- Question number -->
+        <div class="col-md-4">
+          <div class="question">
+            <div class="question-title">
+              <h5>Questions</h5>
+            </div>
+            <div class="question-head">
+              <!-- Show question active body -->
+              <div class="question-body" id="header"></div>
+            </div>
+          </div>
+          <div class="row question-footer">
+            <div class="col-md-3 hidden">
+              <button type="button" class="btn btn-secondary btn-submit">
+                Submit
+              </button>
+            </div>
+
+            <div class="col-md-9">
+              <button type="button" class="btn btn-primary btn-start">
+                Start
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Question content -->
+        <div class="col-md-5 question-content-head">
+          <!-- Show question head -->
+          <div class="show-question-head"></div>
+          <!-- Pagination -->
+          <nav aria-label="...">
+            <ul class="pagination">
+              <li class="page-item">
+                <span class="page-link btn-previous">Previous</span>
+              </li>
+              <li class="page-item page-item-next">
+                <a class="page-link btn-next" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <!-- Time out -->
+        <div class="col-md-3">
+          <p id="result-timer">
+            Time spent on question: <span class="count">00:10:00</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Script -->
+    <script src="js/main.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>
