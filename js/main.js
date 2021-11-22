@@ -73,7 +73,7 @@ var questionArr = [
     choiceB: "function:myFunction()",
     choiceC: "alertBox('Hello World')",
     choiceD: "function myFunction()",
-    correct: "C",
+    correct: "D",
   },
   {
     id: 9,
