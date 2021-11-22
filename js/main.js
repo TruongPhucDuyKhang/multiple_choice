@@ -377,12 +377,12 @@ btnSubmit.addEventListener("click", () => {
     } else if (minutes < 10) {
       minutes = '0' + minutes;
     }
-    showTotalResult();
+
     resultTimer.innerHTML = 'Time spent on question: 00:' + minutes + ':' + seconds;
     btnSubmit.parentElement.classList.add("hidden");
     btnStart.parentElement.classList.remove("hidden");
     countElement.remove();
-    setTimeout("location.reload()", 2000);
+    setTimeout("location.reload()", 1000);
   }
 });
 
