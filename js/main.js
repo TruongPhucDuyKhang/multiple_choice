@@ -144,7 +144,7 @@ totalResult = () => {
       contentChecked.forEach((checked, indexChecked) => {
         if (checked.question == question.id) {
           if (checked.selected == question.correct) {
-            score = checked.id;
+            score += 1;
             return scoreCount = Math.round(100 * score / contentQuestion.length);
           }
         }
