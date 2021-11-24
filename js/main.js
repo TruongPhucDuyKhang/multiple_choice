@@ -177,60 +177,6 @@ showContentChecked = () => {
   }
 }
 
-// //Check answer & empty
-// checkAnswer = () => {
-//   document.addEventListener('DOMContentLoaded', function () {
-//     var questionNumber = document.querySelectorAll(".question-number");
-//     let countNumber = 0;
-//     if (contentChecked) {
-//       contentQuestion.forEach((question, index) => {
-//         contentChecked.forEach((checked, indexChecked) => {
-//           if (countTimerEnd) {
-//             if (checked.question == question.id) {
-//               if (checked.selected == question.correct) {
-//                 return questionNumber[checked.question - 1].classList.add("green-tick");
-//               } else {
-//                 // console.log(checked.question);
-//                 // return questionNumber[checked.question - 1].classList.add("failed");
-//               }
-//             }
-//           }
-//         });
-//       });
-//     }
-//   });
-// }
-// checkAnswer();
-
-// document.addEventListener('DOMContentLoaded', function () {
-//   var questionNumberNews = document.querySelectorAll(".question-number");
-//   contentChecked.filter((item, index) => {
-//     if (item.selected) {
-//       contentQuestion.splice(item.question - 1, 1);
-//     }
-//   });
-//   contentQuestion.forEach(failed => {
-//     // console.log(failed.question);
-//     questionNumberNews[failed.id - 1].classList.add("failed");
-//   });
-//   console.log(contentQuestion);
-// });
-
-// if (countTimerEnd) {
-//   if (contentChecked) {
-//     if (contentChecked.length != contentQuestion.length) {
-//       contentQuestion.forEach(function (contentCk) {
-//         contentChecked.push({
-//           id: contentChecked.length + 1,
-//           value: '',
-//           selected: '',
-//           question: contentChecked.length + 1,
-//         });
-//       });
-//     }
-//   }
-// }
-
 //Show Question Content Head
 HandleQuestionHead = (id) => {
   var questionHeadElement = document.querySelector(".show-question-head");
@@ -472,10 +418,21 @@ btnNext.addEventListener("click", () => {
   localStorage.setItem("getPagination", getPagination++);
 });
 
+//Handle tick green when you have done your homework
+document.addEventListener('DOMContentLoaded', function () {
+  var questionNumberNew = document.querySelectorAll(".question-number");
+  if (contentChecked) {
+    contentChecked.forEach((checked, indexChecked) => {
+      return questionNumberNew[checked.question - 1].classList.add("green-tick");
+    });
+  }
+});
+
 //Event click get checked
 handleEventChecked = (e, newIndex, question) => {
   if (getTimer) {
     if (contentChecked) {
+      var questionNumber = document.querySelectorAll(".question-number");
       var id = contentChecked.map(function (contentCk, index) {
         if (newIndex == index) {
           return contentCk.id;
@@ -500,6 +457,7 @@ handleEventChecked = (e, newIndex, question) => {
         });
       }
       localStorage.setItem("contentChecked", JSON.stringify(contentChecked));
+      questionNumber[question - 1].classList.add("green-tick");
     } else {
       var newContentChecked = { id: 1, value: e.value, selected: e.id, question: question };
       localStorage.setItem("contentChecked", JSON.stringify([newContentChecked]));

@@ -84,6 +84,7 @@ nav {
 
 label {
   display: inline;
+  cursor: pointer;
 }
 
 li.page-item {
