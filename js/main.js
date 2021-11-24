@@ -177,43 +177,59 @@ showContentChecked = () => {
   }
 }
 
-//Check answer & empty
-checkAnswer = () => {
-  document.addEventListener('DOMContentLoaded', function () {
-    var questionNumber = document.querySelectorAll(".question-number");
-    if (contentChecked) {
-      contentQuestion.forEach((question, index) => {
-        contentChecked.forEach((checked, indexChecked) => {
-          if (countTimerEnd) {
-            if (checked.question == question.id) {
-              if (checked.selected == question.correct) {
-                questionNumber[indexChecked].classList.add("green-tick");
-              } else {
-                questionNumber[indexChecked].classList.add("failed");
-              }
-            }
-          }
-        });
-      });
-    }
-  });
-}
-checkAnswer();
+// //Check answer & empty
+// checkAnswer = () => {
+//   document.addEventListener('DOMContentLoaded', function () {
+//     var questionNumber = document.querySelectorAll(".question-number");
+//     let countNumber = 0;
+//     if (contentChecked) {
+//       contentQuestion.forEach((question, index) => {
+//         contentChecked.forEach((checked, indexChecked) => {
+//           if (countTimerEnd) {
+//             if (checked.question == question.id) {
+//               if (checked.selected == question.correct) {
+//                 return questionNumber[checked.question - 1].classList.add("green-tick");
+//               } else {
+//                 // console.log(checked.question);
+//                 // return questionNumber[checked.question - 1].classList.add("failed");
+//               }
+//             }
+//           }
+//         });
+//       });
+//     }
+//   });
+// }
+// checkAnswer();
 
-if (countTimerEnd) {
-  if (contentChecked) {
-    if (contentChecked.length != contentQuestion.length) {
-      contentQuestion.forEach(function (contentCk) {
-        contentChecked.push({
-          id: contentChecked.length + 1,
-          value: '',
-          selected: '',
-          question: contentChecked.length + 1,
-        });
-      });
-    }
-  }
-}
+// document.addEventListener('DOMContentLoaded', function () {
+//   var questionNumberNews = document.querySelectorAll(".question-number");
+//   contentChecked.filter((item, index) => {
+//     if (item.selected) {
+//       contentQuestion.splice(item.question - 1, 1);
+//     }
+//   });
+//   contentQuestion.forEach(failed => {
+//     // console.log(failed.question);
+//     questionNumberNews[failed.id - 1].classList.add("failed");
+//   });
+//   console.log(contentQuestion);
+// });
+
+// if (countTimerEnd) {
+//   if (contentChecked) {
+//     if (contentChecked.length != contentQuestion.length) {
+//       contentQuestion.forEach(function (contentCk) {
+//         contentChecked.push({
+//           id: contentChecked.length + 1,
+//           value: '',
+//           selected: '',
+//           question: contentChecked.length + 1,
+//         });
+//       });
+//     }
+//   }
+// }
 
 //Show Question Content Head
 HandleQuestionHead = (id) => {
@@ -230,19 +246,19 @@ HandleQuestionHead = (id) => {
           </div>
           <div class="form-group">
             <input type="${content.type}" onclick="handleEventChecked(this, ${index}, ${content.id})" name="question" id="A" value="${content.choiceA}"/>
-            <label for="">${content.choiceA}</label>
+            <label for="A">${content.choiceA}</label>
           </div>
           <div class="form-group">
             <input type="${content.type}" onclick="handleEventChecked(this, ${index}, ${content.id})" name="question" id="B" value="${content.choiceB}"/>
-            <label for="label-${content.id}">${content.choiceB}</label>
+            <label for="B">${content.choiceB}</label>
           </div>
           <div class="form-group">
             <input type="${content.type}" onclick="handleEventChecked(this, ${index}, ${content.id})" name="question" id="C" value="${content.choiceC}"/>
-            <label for="label-${content.id}">${content.choiceC}</label>
+            <label for="C">${content.choiceC}</label>
           </div>
           <div class="form-group">
             <input type="${content.type}" onclick="handleEventChecked(this, ${index}, ${content.id})" name="question" id="D" value="${content.choiceD}"/>
-            <label for="label-${content.id}">${content.choiceD}</label>
+            <label for="D">${content.choiceD}</label>
           </div>
         `;
       } else {
@@ -255,15 +271,15 @@ HandleQuestionHead = (id) => {
           </div>
           <div class="form-group">
             <input type="${content.type}" onclick="handleEventChecked(this, ${index}, ${content.id})" name="question" id="A" value="${content.choiceA}"/>
-            <label for="">${content.choiceA}</label>
+            <label for="A">${content.choiceA}</label>
           </div>
           <div class="form-group">
             <input type="${content.type}" onclick="handleEventChecked(this, ${index}, ${content.id})" name="question" id="B" value="${content.choiceB}"/>
-            <label for="label-${content.id}">${content.choiceB}</label>
+            <label for="B">${content.choiceB}</label>
           </div>
           <div class="form-group">
             <input type="${content.type}" onclick="handleEventChecked(this, ${index}, ${content.id})" name="question" id="C" value="${content.choiceC}"/>
-            <label for="label-${content.id}">${content.choiceC}</label>
+            <label for="C">${content.choiceC}</label>
           </div>
         `;
       }
@@ -383,6 +399,15 @@ btnSubmit.addEventListener("click", () => {
     btnStart.parentElement.classList.remove("hidden");
     countElement.remove();
     setTimeout("location.reload()", 1000);
+    //Check content checked empty
+    // if (!contentChecked) {
+    //   document.addEventListener('DOMContentLoaded', function () {
+    //     var questionNumberNew = document.querySelectorAll(".question-number");
+    //     contentQuestion.forEach((question, index) => {
+    //       return questionNumberNew[index].classList.add("failed");
+    //     });
+    //   });
+    // }
   }
 });
 
